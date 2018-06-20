@@ -63,18 +63,16 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             case R.id.btnReg:
                 Account account= new Account();
                 Log.d(LOG_DAO, "--- Добавление данных ---");
-                account.login = "bbb";
-                account.password = "aa";
-                accountDao.insert(account);
-                Log.d(LOG_DAO, "!!! Данные добавлены !!!");
+                account.login = l;
+                account.password = p;
+                long idRow = accountDao.insert(account);
+                Log.d(LOG_DAO, "!!! Данные добавлены id = !!!"+ idRow);
                 break;
             case R.id.btnEntrance:
                 Intent intent = new Intent(this, Entrance.class);
                 startActivity(intent);
                 break;
         }
-
-        db.close();
     }
 }
 

@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Entrance extends AppCompatActivity implements View.OnClickListener{
     final String LOG_DAO = "myLogs";
@@ -46,6 +48,7 @@ public class Entrance extends AppCompatActivity implements View.OnClickListener{
 
     public void onClick(View view){
         Intent intent;
+        Toast toast;
         AppDatabase db = Registration.getInstance().getDatabase();
 
         AccountDao accountDao = db.accountDao();
@@ -63,12 +66,15 @@ public class Entrance extends AppCompatActivity implements View.OnClickListener{
                 Account account= new Account();
 
                 Log.d(LOG_DAO, "--- Ввод данных ---");
-                if(l == account.login && p == account.password){
+                if(l == account.login & p == account.password){
                     intent = new Intent(this, News.class);
                     startActivity(intent);
                     Log.d(LOG_DAO, "--- Вход ---");
+                }else{
+                    toast = Toast.makeText(this, "Проверьте правильность введённых данных", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP, 0,160);
+                    toast.show();
                 }
-                Log.d(LOG_DAO, "!!! Данные совпадают !!!");
                 break;
         }
     }

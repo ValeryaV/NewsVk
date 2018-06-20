@@ -14,11 +14,11 @@ public interface AccountDao {
     @Query("select * from account")
     List<Account> getAll();
 
-    @Query("select * from account where uid = :id")
+    @Query("select * from account where id = :id")
     Account getById(long id);
 
-    @Insert
-    void insert (Account account);
+    @Insert (onConflict = OnConflictStrategy.IGNORE)
+    long insert (Account account);
 
     @Delete
     void delete(Account account);
