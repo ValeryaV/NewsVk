@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:gravity="center"
+    android:background="#fff">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="27dp"
+        android:text="Новости Вконтакте"
+        android:textAlignment="center"
+        android:padding="30dp"
+        android:fontFamily="serif"
+        android:textColor="#000" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3897f0"
+        android:text="Создать аккаунт"
+        android:textSize="15sp"
+        android:textColor="#fff"
+        android:onClick="onRegistration"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:text="Войти"
+        android:textColor="#3897f0"
+        android:textSize="15sp"
+        android:onClick="onEntrance"/>
+
+</LinearLayout>
