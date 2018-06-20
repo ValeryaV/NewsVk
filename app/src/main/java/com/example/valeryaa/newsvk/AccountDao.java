@@ -20,6 +20,4 @@ public interface AccountDao {
     @Insert (onConflict = OnConflictStrategy.IGNORE)
     long insert (Account account);
 
-    @Delete
-    void delete(Account account);
 }

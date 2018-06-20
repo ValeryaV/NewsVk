@@ -19,11 +19,11 @@ import android.widget.TextView;
 public class Registration extends AppCompatActivity implements View.OnClickListener {
     final String LOG_DAO = "myLogs";
 
-    public static Registration instance;
-    private AppDatabase database;
-
     Button btnReg, btnEntrance;
-    EditText log, pass ;
+    EditText log, pass;
+
+    AppDatabase db;
+    AccountDao accountDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,33 +38,21 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         log = (EditText) findViewById(R.id.login);
         pass = (EditText) findViewById(R.id.password);
-
-        instance = this;
-        database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database").build();
-    }
-
-    public static Registration getInstance(){
-        return instance;
-    }
-
-    public AppDatabase getDatabase(){
-        return database;
     }
 
     public void onClick(View view){
-        AppDatabase db = Registration.getInstance().getDatabase();
+        AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+        AccountDao accountDao = db.accountDao();
 
         String l = log.getText().toString();
         String p = pass.getText().toString();
-
-        AccountDao accountDao = db.accountDao();
 
         switch (view.getId()){
             case R.id.btnReg:
                 Account account= new Account();
                 Log.d(LOG_DAO, "--- Добавление данных ---");
-                account.login = l;
-                account.password = p;
+                account.login = "w3w3";
+                account.password = "s5s5s";
                 long idRow = accountDao.insert(account);
                 Log.d(LOG_DAO, "!!! Данные добавлены id = !!!"+ idRow);
                 break;
@@ -75,4 +63,27 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
     }
 }
+
+/*
+public class App extends Application {
+    public static App instance;
+    private AppDatabase database;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        instance = this;
+        database = Room.databaseBuilder(this, AppDatabase.class, "db").build();
+    }
+
+    public static App getInstance(){
+        return instance;
+    }
+
+    public AppDatabase getDatabase(){
+        return database;
+    }
+}
+ */
 

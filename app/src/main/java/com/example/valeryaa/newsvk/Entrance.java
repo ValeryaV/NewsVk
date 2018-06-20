@@ -33,25 +33,12 @@ public class Entrance extends AppCompatActivity implements View.OnClickListener{
 
         log = (EditText) findViewById(R.id.login);
         pass = (EditText) findViewById(R.id.password);
-
-        instance = this;
-        database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database").build();
-    }
-
-    public static Entrance getInstance(){
-        return instance;
-    }
-
-    public AppDatabase getDatabase(){
-        return database;
     }
 
     public void onClick(View view){
         Intent intent;
         Toast toast;
-        AppDatabase db = Registration.getInstance().getDatabase();
-
-        AccountDao accountDao = db.accountDao();
+//        database = Registration.getInstance().getDatabase();
 
         String l = log.getText().toString();
         String p = pass.getText().toString();
