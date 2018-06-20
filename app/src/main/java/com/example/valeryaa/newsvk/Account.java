@@ -5,7 +5,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class Account {
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
     public long uid;
     public String login;
     public String password;

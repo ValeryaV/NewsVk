@@ -63,7 +63,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             case R.id.btnReg:
                 Account account= new Account();
                 Log.d(LOG_DAO, "--- Добавление данных ---");
-                account.uid = 5;
                 account.login = "bbb";
                 account.password = "aa";
                 accountDao.insert(account);
