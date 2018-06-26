@@ -59,7 +59,7 @@ public class Entrance extends AppCompatActivity implements View.OnClickListener{
                     Log.d(LOG_DAO, "--- Вход ---");
                 }else{
                     toast = Toast.makeText(this, "Проверьте правильность введённых данных", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP, 0,160);
+                    toast.setGravity(Gravity.BOTTOM, 30,160);
                     toast.show();
                 }
                 break;
