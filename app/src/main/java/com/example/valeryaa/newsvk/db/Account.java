@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 public class Account {
     @PrimaryKey (autoGenerate = true)
     @NonNull
-    public long id
+    public long id;
     public String login;
     public String password;
 
