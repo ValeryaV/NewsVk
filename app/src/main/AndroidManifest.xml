@@ -12,7 +12,7 @@
         android:xlargeScreens="true" />
 
     <application
-        android:name=".Application"
+        android:name=".news.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".login.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,13 +29,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Registration"
+            android:name=".login.Registration"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Entrance"
+            android:name=".login.Entrance"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Content"
+            android:name=".news.Content"
             android:screenOrientation="portrait"/>
     </application>
 
