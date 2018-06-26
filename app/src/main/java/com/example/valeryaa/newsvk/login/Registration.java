@@ -1,5 +1,6 @@
 package com.example.valeryaa.newsvk.login;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,11 +16,10 @@ import com.example.valeryaa.newsvk.db.AppDatabase;
 public class Registration extends AppCompatActivity implements View.OnClickListener {
     final String LOG_DAO = "myLogs";
 
+    AppDatabase db;
+
     Button btnReg, btnEntrance;
     EditText log, pass;
-
-    AppDatabase db;
-    AccountDao accountDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,52 +34,33 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         log = (EditText) findViewById(R.id.login);
         pass = (EditText) findViewById(R.id.password);
+
+        //AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database").build();
+
     }
 
-    public void onClick(View view){
-        AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+    public void onClick(View view) {
+        db = App.getInstance().getDatabase();
         AccountDao accountDao = db.accountDao();
 
         String l = log.getText().toString();
         String p = pass.getText().toString();
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnReg:
-                Account account= new Account();
+                Account account = new Account();
                 Log.d(LOG_DAO, "--- Добавление данных ---");
-                account.login = "w3w3";
-                account.password = "s5s5s";
+                account.login = "adfdf";
+                account.password = "1qwE3-";
                 long idRow = accountDao.insert(account);
-                Log.d(LOG_DAO, "!!! Данные добавлены id = !!!"+ idRow);
+                Log.d(LOG_DAO, "!!! Данные добавлены id = !!!" + idRow);
                 break;
             case R.id.btnEntrance:
-                Intent intent = new Intent(this, Entrance.class);
-                startActivity(intent);
+                //Intent intent = new Intent(this, Entrance.class);
+                //startActivity(intent);
                 break;
         }
     }
 }
 
-/*
-public class App extends Application {
-    public static App instance;
-    private AppDatabase database;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        instance = this;
-        database = Room.databaseBuilder(this, AppDatabase.class, "db").build();
-    }
-
-    public static App getInstance(){
-        return instance;
-    }
-
-    public AppDatabase getDatabase(){
-        return database;
-    }
-}
- */
 
