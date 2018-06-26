@@ -36,11 +36,7 @@
             android:name=".Entrance"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".News"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_content"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

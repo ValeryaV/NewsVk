@@ -5,17 +5,23 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="Import" />
+            android:id="@+id/nav_fais"
+            android:title="ФАИС" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_msf"
+            android:title="МСФ" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_mtf"
+            android:title="МТФ" />
         <item
-            android:id="@+id/nav_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_gef"
+            android:title="ГЭФ" />
+        <item
+            android:id="@+id/nav_ef"
+            android:title="ЭФ" />
+        <item
+            android:id="@+id/nav_exit"
+            android:title="Выход" />
     </group>
 
 

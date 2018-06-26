@@ -2,16 +2,12 @@ package com.example.valeryaa.newsvk;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 public class Content extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,18 +44,31 @@ public class Content extends AppCompatActivity implements NavigationView.OnNavig
         int id = item.getItemId();
         android.app.FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_fais) {
             fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, new First())
+                    .replace(R.id.content_frame, new News("fais_online"))
                     .commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_msf) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, new News("mbf_gstu"))
+                    .commit();
+        } else if (id == R.id.nav_mtf) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, new News("mtf_gstu_by"))
+                    .commit();
+        } else if (id == R.id.nav_gef) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, new News("rbgstu"))
+                    .commit();
+        }
+        else if (id == R.id.nav_ef) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, new News("efthebest"))
+                    .commit();
+        }
+        else if (id == R.id.nav_exit) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

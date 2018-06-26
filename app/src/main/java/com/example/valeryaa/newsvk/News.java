@@ -1,9 +1,16 @@
 package com.example.valeryaa.newsvk;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -25,7 +32,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class News extends Activity {
+@SuppressLint("ValidFragment")
+public class News extends Fragment {
+    View view;
+
     ListView listView;
 
     JSONObject jsonObject = null;
@@ -35,22 +45,30 @@ public class News extends Activity {
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
 
+    String name;
+
+    @SuppressLint("ValidFragment")
+    public News(String name){
+        this.name = name;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.news, container, false);
 
         VKSdk.login(this);
 
-        listView = (ListView) findViewById(R.id.post);
+        listView = (ListView) view.findViewById(R.id.post);
+        return view;
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resCode, Intent data) {
+    public void onActivityResult(int requestCode, int resCode, Intent data) {
         if (VKSdk.onActivityResult(requestCode, resCode, data, new VKCallback<VKAccessToken>() {
             @Override
             public void onResult(VKAccessToken res) {
-                final VKRequest vkRequest = new VKApiGroups().getById(VKParameters.from("group_ids", "fais_online"));
+                final VKRequest vkRequest = new VKApiGroups().getById(VKParameters.from("group_ids", name));
                 vkRequest.executeWithListener(new VKRequest.VKRequestListener() {
                     @Override
                     public void onComplete(VKResponse response) {
@@ -62,6 +80,7 @@ public class News extends Activity {
                             VKRequest vkRequest1 = new VKApiWall().get(VKParameters.from(VKApiConst.OWNER_ID, "-" + vkList.get(0).fields.getInt("id"), VKApiConst.COUNT, 20));
 
                             vkRequest1.executeWithListener(new VKRequest.VKRequestListener() {
+                                @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override
                                 public void onComplete(VKResponse response) {
                                     super.onComplete(response);
@@ -76,7 +95,7 @@ public class News extends Activity {
                                             post = (JSONObject) jsonArray.get(i);
                                             arrayList.add(post.getString("text"));
                                             arrayList.add("Likes = "+post.getJSONObject("likes").getString("count")+"\t"+"Reposts = "+post.getJSONObject("reposts").getString("count"));
-                                            arrayAdapter = new ArrayAdapter<String>(News.this, android.R.layout.simple_list_item_1, arrayList);
+                                            arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, arrayList);
                                             listView.setAdapter(arrayAdapter);
                                         }
 
