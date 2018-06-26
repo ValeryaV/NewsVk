@@ -9,4 +9,6 @@
     <string name="action_settings">Settings</string>
 
     <integer name="com_vk_sdk_AppId">6611596</integer>
+    <string name="title_activity_content">Content</string>
+    <string name="title_activity_menu">Menu</string>
 </resources>
