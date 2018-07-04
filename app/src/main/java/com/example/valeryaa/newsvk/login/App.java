@@ -1,11 +1,8 @@
 package com.example.valeryaa.newsvk.login;
 
 import android.arch.persistence.room.Room;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.example.valeryaa.newsvk.db.AppDatabase;
-import com.example.valeryaa.newsvk.news.Application;
 
 public class App extends android.app.Application {
     public static App instance;
